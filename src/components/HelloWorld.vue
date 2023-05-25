@@ -1,16 +1,26 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, onMounted, nextTick } from "vue";
 
-defineProps({
-  msg: String,
-})
+defineProps<{ msg: string }>();
 
-const count = ref(0)
+const count = ref(0);
+
+type eventName = "click" | "scroll";
+function test(ele: Element, eventName: eventName): number {
+  console.log(ele, eventName, 123);
+  return 1;
+}
+onMounted(() => {
+  nextTick(() => {
+    let el = document.getElementById("test");
+    test(<Element>el, "click");
+  });
+});
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
-
+  <div id="test">123</div>
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <p>
