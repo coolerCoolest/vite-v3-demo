@@ -34,6 +34,32 @@ class hello {
 let haha = new hello("haha");
 haha.say();
 
+interface poeople {
+  say(): void;
+}
+
+interface dog {
+  eat(): void;
+}
+class cat {
+  sleep() {
+    console.log("sleep");
+  }
+}
+
+class nan extends cat implements poeople, dog {
+  say() {
+    console.log("nan");
+  }
+  eat() {
+    console.log("eat");
+  }
+}
+let a: nan = new nan();
+a.say();
+a.eat();
+a.sleep();
+
 onMounted(() => {
   nextTick(() => {
     let el = document.getElementById("test");
